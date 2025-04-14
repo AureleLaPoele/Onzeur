@@ -19,12 +19,6 @@ void AudioManager::update() {
 	secondsElapsed = elapsed.asSeconds();
 
 	percentage = getPercentage();
-
-	if (tempPercentage != percentage && percentage != 0) {
-		std::cout << "Percentage : " << percentage << "%\n";
-		tempPercentage = percentage;
-	}
-
 }
 
 void AudioManager::play() {
@@ -42,7 +36,7 @@ void AudioManager::pause() {
 	music.pause();
 }
 
-int AudioManager::getPercentage() {
+float AudioManager::getPercentage() {
 	percentage = (secondsElapsed * 100) / secondsDuration;
 	return percentage;
 }

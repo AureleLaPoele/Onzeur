@@ -3,10 +3,12 @@
 MusicPlayer::MusicPlayer() 
     : window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Onzeur, le son pop-rock"), music("SubwaySurfer", "none", "assets/songs/SubwaySurfer.ogg") {
     playing = false;
+    window.setVerticalSyncEnabled(true);
 }
 
 void MusicPlayer::run() {
 	while (window.isOpen()) {
+        deltaTime = clock.restart().asSeconds();
         processEvents();
         update();
         render();
@@ -35,9 +37,15 @@ void MusicPlayer::processEvents() {
 
 void MusicPlayer::update() {
     music.update();
+    UI.update(music, deltaTime);
 }
 
 void MusicPlayer::render() {
     window.clear();
+    UI.render(window);
     window.display();
 }
+
+//for (const auto& elem : vec) {
+//    std::cout << elem << std::endl;
+//}

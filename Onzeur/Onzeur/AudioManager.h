@@ -2,6 +2,8 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
 
+class UIManager;
+
 class AudioManager {
 public:
 	AudioManager(std::string name, std::string artist, const std::string& filepath);
@@ -10,6 +12,7 @@ public:
 	void play();
 	void stop();
 	void pause();
+	float getPercentage();
 private:
 	sf::Music music;
 
@@ -21,5 +24,5 @@ private:
 
 	float percentage;
 	float tempPercentage;
-	int getPercentage();
+
 };
