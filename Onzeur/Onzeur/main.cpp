@@ -1,7 +1,10 @@
 #include "MusicPlayer.h"
+#include <SFML/Graphics.hpp>
+#include <iostream>
 
 int main() {
-	MusicPlayer* app = new MusicPlayer();
+	sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
+	MusicPlayer* app = new MusicPlayer(desktopMode);
 	app->run();
 	delete app;
 	return 0;

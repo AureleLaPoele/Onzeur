@@ -7,7 +7,7 @@
 
 class MusicPlayer {
 public:
-	MusicPlayer();
+	MusicPlayer(sf::VideoMode desktopMode);
 	void run();
 	void processEvents();
 	void update();
@@ -15,8 +15,8 @@ public:
 	sf::Clock clock;
 	float deltaTime;
 private:
-	const unsigned int WINDOW_WIDTH = 600;
-	const unsigned int WINDOW_HEIGHT = 400;
+	const unsigned int WINDOW_WIDTH = 1920;
+	const unsigned int WINDOW_HEIGHT = 1080;
 
 	sf::RenderWindow window;
 	bool playing;

@@ -1,7 +1,7 @@
 #include "MusicPlayer.h"
 
-MusicPlayer::MusicPlayer() 
-    : window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Onzeur, le son pop-rock"), music("SubwaySurfer", "none", "assets/songs/SubwaySurfer.ogg") {
+MusicPlayer::MusicPlayer(sf::VideoMode desktopMode)
+    : window(desktopMode , "Onzeur, le son pop-rock", sf::Style::Fullscreen), music("SubwaySurfer", "none", "assets/songs/SubwaySurfer.ogg"), UI(desktopMode) {
     playing = false;
     window.setVerticalSyncEnabled(true);
 }
@@ -21,6 +21,9 @@ void MusicPlayer::processEvents() {
         if (event.type == sf::Event::Closed)
             window.close();
         else if (event.type == sf::Event::KeyPressed) {
+            if (event.key.code == sf::Keyboard::Escape) {
+                window.close();
+            }
             if (event.key.code == sf::Keyboard::Space) {
                 if (!playing) {
                     music.play();
@@ -38,11 +41,13 @@ void MusicPlayer::processEvents() {
 void MusicPlayer::update() {
     music.update();
     UI.update(music, deltaTime);
+    //UI.updateProgressBarPreviewPos(sf::Mouse::getPosition(), window);
 }
 
 void MusicPlayer::render() {
     window.clear();
     UI.render(window);
+    UI.updateProgressBarPreviewPos(sf::Mouse::getPosition(), window);
     window.display();
 }
 
